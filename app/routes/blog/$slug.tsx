@@ -1,9 +1,11 @@
+import { useParams } from 'remix'
 import { POSTS } from '~/config'
 
 export default function BlogPage() {
-    let POST = POSTS[0]
+    let { slug } = useParams()
+    let POST = POSTS.find(post => post.slug === slug )
     return (
-        <div className="post">
+        POST ? <div className="post">
             <div className="post__header">
                 <div className="post__tags">
                     { POST.tags.map(tag =>
@@ -19,6 +21,8 @@ export default function BlogPage() {
             <article className="prose">
                 {POST.description}
             </article>
+        </div> : <div className="post_error">
+            I didn't find what you're looking for...
         </div>
     )
 }
