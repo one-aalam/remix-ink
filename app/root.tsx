@@ -1,17 +1,18 @@
-import {
-  LiveReload,
-} from "remix";
-
+import { LiveReload, Outlet } from "remix";
 
 export default function App() {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Remix: Engineer modern full-stack apps, joyfully! </title>
       </head>
       <body>
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+          {/* Container */}
+          <Outlet/>
+        {process.env.NODE_ENV === "development" ? (
+          <LiveReload />
+        ) : null}
       </body>
     </html>
   );
