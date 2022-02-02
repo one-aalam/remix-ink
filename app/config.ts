@@ -8,6 +8,17 @@ export const SITE = {
     // description ?
 }
 
+export const NAV_ITEMS = {
+    home: {
+        path: '/',
+        title: 'home'
+    },
+    about: {
+        path: '/about',
+        title: 'about'
+    }
+}
+
 export const POSTS = [{
     title: 'Introducing Remix - Ship Full-stack Apps, Joyfully',
     slug: 'introducing-remix',
