@@ -13,6 +13,10 @@ export const NAV_ITEMS = {
         path: '/',
         title: 'home'
     },
+    blog: {
+        path: '/blog',
+        title: 'blog'
+    },
     about: {
         path: '/about',
         title: 'about'

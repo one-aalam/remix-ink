@@ -3,7 +3,7 @@ import { POSTS } from '~/config'
 export default function BlogPage() {
     let POST = POSTS[0]
     return (
-        <div className="blog__content">
+        <div className="post">
             <div className="post__header">
                 <div className="post__tags">
                     { POST.tags.map(tag =>
