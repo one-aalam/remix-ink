@@ -1,10 +1,11 @@
-import { LiveReload, Outlet, LinksFunction, Links } from "remix";
+import { LiveReload, Outlet, LinksFunction, Links, MetaFunction, Meta } from "remix";
 
 import Header from '~/components/Header'
 import Nav from '~/components/Nav'
 import Footer from '~/components/Footer'
 
 import appStyleUrl from '~/styles/global.css'
+import { SITE } from '~/config'
 
 export let links: LinksFunction = () => {
     return [
@@ -14,12 +15,21 @@ export let links: LinksFunction = () => {
     ]
 }
 
+export let meta: MetaFunction = () => {
+    return {
+        title: SITE.title,
+        keyword: 'Remix, Engineering',
+        description: SITE.description,
+        // other Og:tags can go here
+    }
+}
+
 export default function App() {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
-        <title>Remix: Engineer modern full-stack apps, joyfully! </title>
+        <Meta/>
         <Links/>
       </head>
       <body>

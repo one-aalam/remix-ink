@@ -1,5 +1,5 @@
-import { useParams, LinksFunction } from 'remix'
-import { POSTS } from '~/config'
+import { useParams, LinksFunction, MetaFunction } from 'remix'
+import { POSTS, SITE } from '~/config'
 
 import blogPostStyleUrl from '~/styles/page-blog-post.css'
 
@@ -9,6 +9,16 @@ export let links: LinksFunction = () => {
         { rel: 'stylesheet', href: blogPostStyleUrl }
     ]
 }
+
+export let meta: MetaFunction = () => {
+    let { slug } = useParams()
+    let POST = POSTS.find(post => post.slug === slug )
+    return {
+        title: `${SITE.title} | Blog | ${POST?.title || 'Not Found'}`,
+        description: POST?.description || ''
+    }
+}
+
 
 export default function BlogPage() {
     let { slug } = useParams()

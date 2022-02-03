@@ -1,4 +1,5 @@
-import { Outlet, LinksFunction } from "remix"
+import { Outlet, LinksFunction, MetaFunction } from "remix"
+import { SITE } from '~/config'
 
 import blogLayoutStyleUrl from '~/styles/layout-blog.css'
 
@@ -6,6 +7,12 @@ export let links: LinksFunction = () => {
     return [
         { rel: 'stylesheet', href: blogLayoutStyleUrl }
     ]
+}
+
+export let meta: MetaFunction = () => {
+    return {
+        title: `${SITE.title} | Blog`
+    }
 }
 
 export default function BlogLayoutRoute() {
