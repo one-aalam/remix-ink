@@ -1,7 +1,7 @@
 import { Outlet, LinksFunction, MetaFunction } from "remix"
 import { SITE } from '~/config'
 
-import blogLayoutStyleUrl from '~/styles/layout-blog.css'
+import blogLayoutStyleUrl from '~/styles/out/layout-blog.css'
 
 export let links: LinksFunction = () => {
     return [

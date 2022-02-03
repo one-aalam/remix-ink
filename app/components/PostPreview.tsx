@@ -12,14 +12,14 @@ export default function PostPreview({ post }: PropsWithChildren<{post: Post}>): 
                     <span className="post-preview__date__month-n-year">{ `${getMonthName(new Date(post.date))} ${new Date(post.date).getFullYear()}` }</span>
                 </div>
             </div>
-            <div>
+            <article>
                 <h4 className="post-preview__title">
                     <a href={`/blog/${post.slug}`} title={post.title}>{post.title}</a>
                 </h4>
                 <p className="post-preview__desc">
                     {post.description}
                 </p>
-            </div>
+            </article>
         </div>
     )
 }

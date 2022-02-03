@@ -1,7 +1,7 @@
 import { useParams, LinksFunction, MetaFunction } from 'remix'
 import { POSTS, SITE } from '~/config'
 
-import blogPostStyleUrl from '~/styles/page-blog-post.css'
+import blogPostStyleUrl from '~/styles/out/page-blog-post.css'
 
 
 export let links: LinksFunction = () => {

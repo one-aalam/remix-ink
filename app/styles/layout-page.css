@@ -3,17 +3,13 @@
 }
 
 .page__header {
-    margin-bottom: 0.25rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    @apply py-4 mb-1;
 }
 
 .page__title {
-    font-size: 3rem;
-    line-height: 1;
-    font-weight: 800;
+    @apply text-5xl font-extrabold text-primary;
 }
 
 .page__desc {
-    color: gray;
+    @apply text-gray-400;
 }
