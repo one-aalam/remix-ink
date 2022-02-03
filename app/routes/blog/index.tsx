@@ -1,4 +1,3 @@
-import { Link } from "remix"
 import PostPreview from "~/components/PostPreview"
 import { POSTS } from '~/config'
 

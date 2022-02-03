@@ -1,0 +1,22 @@
+.blog__content {
+    min-height: 36rem;
+}
+
+.blog__header {
+    margin-bottom: 0.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.blog__title {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 800;
+    --text-opacity: 1;
+    color: rgba(126,34,206,var(--text-opacity));
+}
+
+.blog__desc {
+    --text-opacity: 1;
+    color: rgba(161,161,170,var(--text-opacity));
+}

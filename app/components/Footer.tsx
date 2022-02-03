@@ -1,5 +1,6 @@
 
 import { SITE } from '~/config'
+
 export default function Footer() {
 return (<footer className="footer">
     <nav className="nav">

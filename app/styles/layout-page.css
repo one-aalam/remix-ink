@@ -1,0 +1,19 @@
+.page__content {
+    min-height: 36rem;
+}
+
+.page__header {
+    margin-bottom: 0.25rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.page__title {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.page__desc {
+    color: gray;
+}

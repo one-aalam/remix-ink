@@ -2,13 +2,13 @@ import { Outlet } from "remix"
 
 export default function BlogLayoutRoute() {
     return (
-        <div className="blog__content">
-            <div className="blog__heading">
-                <h3>Blog</h3>
-                <p>Learn. Write. Repeat</p>
+        <main className="content blog__content">
+            <div className="blog__header">
+                <h3 className="blog__title">Blog</h3>
+                <p className="blog__desc">Learn. Write. Repeat</p>
             </div>
                 {/* Blog Content from component inside /blog */}
                 <Outlet/>
-        </div>
+        </main>
     )
 }
