@@ -1,4 +1,12 @@
-import { Outlet } from "remix"
+import { Outlet, LinksFunction } from "remix"
+
+import blogLayoutStyleUrl from '~/styles/layout-blog.css'
+
+export let links: LinksFunction = () => {
+    return [
+        { rel: 'stylesheet', href: blogLayoutStyleUrl }
+    ]
+}
 
 export default function BlogLayoutRoute() {
     return (

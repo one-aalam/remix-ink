@@ -1,5 +1,14 @@
-import { useParams } from 'remix'
+import { useParams, LinksFunction } from 'remix'
 import { POSTS } from '~/config'
+
+import blogPostStyleUrl from '~/styles/page-blog-post.css'
+
+
+export let links: LinksFunction = () => {
+    return [
+        { rel: 'stylesheet', href: blogPostStyleUrl }
+    ]
+}
 
 export default function BlogPage() {
     let { slug } = useParams()

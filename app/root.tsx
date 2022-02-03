@@ -5,18 +5,12 @@ import Nav from '~/components/Nav'
 import Footer from '~/components/Footer'
 
 import appStyleUrl from '~/styles/global.css'
-import blogLayoutStyleUrl from '~/styles/layout-blog.css'
-import blogPageStyleUrl from '~/styles/page-blog-index.css'
-import blogPostStyleUrl from '~/styles/page-blog-post.css'
 
 export let links: LinksFunction = () => {
     return [
         { rel: "preconnect", href: "//fonts.gstatic.com", crossOrigin: "anonymous" },
         { rel: "stylesheet", href: "//fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&amp;lang=en" },
-        { rel: 'stylesheet', href: appStyleUrl },
-        { rel: 'stylesheet', href: blogLayoutStyleUrl },
-        { rel: 'stylesheet', href: blogPageStyleUrl },
-        { rel: 'stylesheet', href: blogPostStyleUrl }
+        { rel: 'stylesheet', href: appStyleUrl }
     ]
 }
 
