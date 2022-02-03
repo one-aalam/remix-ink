@@ -11,6 +11,8 @@ import blogPostStyleUrl from '~/styles/page-blog-post.css'
 
 export let links: LinksFunction = () => {
     return [
+        { rel: "preconnect", href: "//fonts.gstatic.com", crossOrigin: "anonymous" },
+        { rel: "stylesheet", href: "//fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&amp;lang=en" },
         { rel: 'stylesheet', href: appStyleUrl },
         { rel: 'stylesheet', href: blogLayoutStyleUrl },
         { rel: 'stylesheet', href: blogPageStyleUrl },
