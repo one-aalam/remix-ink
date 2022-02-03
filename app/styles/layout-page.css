@@ -1,15 +1,17 @@
-.page__content {
-    min-height: 36rem;
-}
 
-.page__header {
-    @apply py-4 mb-1;
-}
+.page {
+    &__content {
+        min-height: 36rem;
+    }
+    &__header {
+        @apply py-4 mb-1;
+    }
 
-.page__title {
-    @apply text-5xl font-extrabold text-primary;
-}
+    &__title {
+        @apply text-5xl font-extrabold text-primary;
+    }
 
-.page__desc {
-    @apply text-gray-400;
+    &__desc {
+        @apply text-gray-400;
+    }
 }

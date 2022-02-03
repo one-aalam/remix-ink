@@ -1,15 +1,16 @@
-.blog__content {
-    min-height: 36rem;
-}
+.blog {
+    &__content {
+        min-height: 36rem;
+    }
+    &__header {
+        @apply py-4 mb-1;
+    }
 
-.blog__header {
-    @apply py-4 mb-1;
-}
+    &__title {
+        @apply text-5xl font-extrabold text-primary;
+    }
 
-.blog__title {
-    @apply text-5xl font-extrabold text-primary;
-}
-
-.blog__desc {
-    @apply text-gray-400;
+    &__desc {
+        @apply text-gray-400;
+    }
 }

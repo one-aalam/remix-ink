@@ -2,50 +2,52 @@
 /* Header */
 .header {
     @apply flex gap-4 border-b py-3;
+    &__logo-img {
+        @apply w-16 h-16 rounded-full overflow-hidden;
+     }
+
+     &__meta {
+        @apply flex-1;
+     }
+
+    &__title {
+        @apply text-4xl font-extrabold md:text-5xl;
+         --text-opacity: 1;
+        color: rgba(107,33,168,var(--text-opacity));
+     }
+
+     &__meta-more {
+        @apply flex;
+     }
+
+     &__desc {
+        @apply text-xl flex-1 dark:text-gray-200;
+     }
+
+     &__nav {
+         @apply flex;
+     }
+
+     &__ref-list {
+        @apply flex gap-3 text-gray-400;
+        --text-opacity: 1;
+        color: rgba(161,161,170,var(--text-opacity));
+     }
 }
 
-.header__logo-img {
-    @apply w-16 h-16 rounded-full overflow-hidden;
- }
 
- .header__meta {
-    @apply flex-1;
- }
-
-.header__title {
-    @apply text-4xl font-extrabold md:text-5xl;
-     --text-opacity: 1;
-    color: rgba(107,33,168,var(--text-opacity));
- }
-
- .header__meta-more {
-    @apply flex;
- }
-
- .header__desc {
-    @apply text-xl flex-1 dark:text-gray-200;
- }
-
- .header__nav {
-     @apply flex;
- }
-
- .header__ref-list {
-    @apply flex gap-3 text-gray-400;
-    --text-opacity: 1;
-    color: rgba(161,161,170,var(--text-opacity));
- }
 
  /* Nav */
 
  .nav {
      @apply py-3;
+     &__list {
+        @apply inline-flex list-none gap-8 text-xl font-semibold py-2 flex-wrap;
+        --text-opacity: 1;
+        color: rgba(107,33,168,var(--text-opacity));
+    }
 }
- .nav__list {
-    @apply inline-flex list-none gap-8 text-xl font-semibold py-2 flex-wrap;
-    --text-opacity: 1;
-    color: rgba(107,33,168,var(--text-opacity));
-}
+
 
 /* Footer */
 footer, .footer {

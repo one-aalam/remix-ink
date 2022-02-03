@@ -20,7 +20,7 @@ export default function BlogLayoutRoute() {
     return (
         <ul className="blog__list">
          {
-            POSTS.map(post => <PostPreview post={post} />)
+            POSTS.map(post => <PostPreview key={post.slug} post={post} />)
          }
         </ul>
     )
