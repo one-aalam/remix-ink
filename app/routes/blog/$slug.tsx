@@ -41,7 +41,7 @@ export default function BlogPage() {
             <div className="post__header">
                 <div className="post__tags">
                     { post.tags?.map((tag: string) =>
-                    <a className="post__tag" href={`/tags/${tag}`} title={tag}>{tag}</a>)
+                    <a className="post__tag" href={`/blog?tag=${tag}`} title={tag}>{tag}</a>)
                 }
                 </div>
                 <h1 className="post__title">{ post.title }</h1>
