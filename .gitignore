@@ -5,3 +5,7 @@ node_modules
 /public/build
 .env
 /app/styles/app.css
+
+
+# Contentlayer
+.contentlayer

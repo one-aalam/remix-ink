@@ -1,5 +1,5 @@
 import type { PropsWithChildren, ReactElement } from 'react'
-import type { Post } from '~/types'
+import type { Post } from '.contentlayer/types'
 import { getMonthName } from '~/utils'
 
 
