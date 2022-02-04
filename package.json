@@ -6,8 +6,8 @@
   "scripts": {
     "build:remix": "remix build",
     "dev:remix": "PORT=3333 remix dev",
-    "build:css": "cross-env NODE_ENV=production postcss ./app/styles/**/*.css --dir app/styles/out --env production",
-    "dev:css": "postcss ./app/styles/**/*.css --dir app/styles/out --watch",
+    "build:css": "cross-env NODE_ENV=production postcss ./app/styles/tailwind.css --output app/styles/app.css --env production",
+    "dev:css": "postcss ./app/styles/tailwind.css --output app/styles/app.css --watch",
     "dev": "concurrently \"npm:dev:*\" \"npm:start\"",
     "build": "concurrently \"npm:build:*\"",
     "postinstall": "remix setup node",
