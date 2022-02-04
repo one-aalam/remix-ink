@@ -1,14 +1,5 @@
-import { useParams, LinksFunction, MetaFunction } from 'remix'
+import { useParams, MetaFunction } from 'remix'
 import { POSTS, SITE } from '~/config'
-
-import blogPostStyleUrl from '~/styles/out/page-blog-post.css'
-
-
-export let links: LinksFunction = () => {
-    return [
-        { rel: 'stylesheet', href: blogPostStyleUrl }
-    ]
-}
 
 export let meta: MetaFunction = () => {
     let { slug } = useParams()
@@ -18,7 +9,6 @@ export let meta: MetaFunction = () => {
         description: POST?.description || ''
     }
 }
-
 
 export default function BlogPage() {
     let { slug } = useParams()

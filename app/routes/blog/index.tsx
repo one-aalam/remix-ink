@@ -1,14 +1,6 @@
-import { LinksFunction, MetaFunction } from "remix"
+import { MetaFunction } from "remix"
 import PostPreview from "~/components/PostPreview"
 import { POSTS, SITE } from '~/config'
-
-import blogPageStyleUrl from '~/styles/out/page-blog-index.css'
-
-export let links: LinksFunction = () => {
-    return [
-        { rel: 'stylesheet', href: blogPageStyleUrl }
-    ]
-}
 
 export let meta: MetaFunction = () => {
     return {

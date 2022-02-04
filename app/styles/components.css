@@ -1,0 +1,12 @@
+@import "./components/layout/generic.css";
+
+@import "./components/header.css";
+@import "./components/footer.css";
+@import "./components/nav.css";
+
+@import "./components/post.css";
+@import "./components/post-preview.css";
+@import "./components/post-preview-list.css";
+
+@import "./components/layout/page.css";
+@import "./components/layout/blog.css";

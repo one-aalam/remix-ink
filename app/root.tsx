@@ -4,16 +4,14 @@ import Header from '~/components/Header'
 import Nav from '~/components/Nav'
 import Footer from '~/components/Footer'
 
-import appTwStyleUrl from '~/styles/out/tailwind.css'
-import appGlobalStyleUrl from '~/styles/out/global.css'
+import appStyleUrl from '~/styles/app.css'
 import { SITE } from '~/config'
 
 export let links: LinksFunction = () => {
     return [
         { rel: "preconnect", href: "//fonts.gstatic.com", crossOrigin: "anonymous" },
         { rel: "stylesheet", href: "//fonts.googleapis.com/css?family=Work+Sans:300,400,600,700&amp;lang=en" },
-        { rel: 'stylesheet', href: appTwStyleUrl },
-        { rel: 'stylesheet', href: appGlobalStyleUrl }
+        { rel: 'stylesheet', href: appStyleUrl },
     ]
 }
 

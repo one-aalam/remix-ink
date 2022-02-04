@@ -1,0 +1,8 @@
+.nav {
+    @apply py-3;
+    &__list {
+       @apply inline-flex list-none gap-8 text-xl font-semibold py-2 flex-wrap;
+       --text-opacity: 1;
+       color: rgba(107,33,168,var(--text-opacity));
+   }
+}
