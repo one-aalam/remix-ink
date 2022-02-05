@@ -1,8 +1,8 @@
 import { LoaderFunction, MetaFunction, useLoaderData, Link } from "remix"
-import PostPreview from "~/components/PostPreview"
 import type { Post } from '.contentlayer/types'
 import { SITE } from '~/config'
 import { getPosts } from '~/lib/contentlayer.server'
+import PostPreviewList from '~/components/PostPreviewList'
 
 type LoaderData = {
     posts: Array<Post>,
@@ -109,11 +109,7 @@ export default function BlogLayoutRoute() {
                 </div>
             </div>
             <br className="spacer"/>
-            <div className="blog__list">
-            {
-                posts.map(post => <PostPreview key={post.slug} post={post} />)
-            }
-            </div>
+            <PostPreviewList posts={posts} />
         </div>
     )
 }
