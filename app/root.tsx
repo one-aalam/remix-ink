@@ -1,4 +1,4 @@
-import { LiveReload, Outlet, LinksFunction, Links, MetaFunction, Meta } from "remix";
+import { LiveReload, Outlet, LinksFunction, Links, MetaFunction, Meta, ErrorBoundaryComponent, useCatch } from "remix";
 
 import Header from '~/components/Header'
 import Nav from '~/components/Nav'
@@ -47,4 +47,33 @@ export default function App() {
       </body>
     </html>
   );
+}
+
+export let CatchBoundary = () => {
+    const caught = useCatch();
+    return (
+      <html>
+        <head>
+          <title>Oops!</title>
+          <Meta />
+          <Links />
+        </head>
+        <body>
+          <h1>
+            {caught.status} {caught.statusText}
+          </h1>
+        </body>
+      </html>
+    );
+}
+
+export let ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    );
 }

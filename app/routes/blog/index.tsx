@@ -1,4 +1,4 @@
-import { LoaderFunction, MetaFunction, useLoaderData, Link } from "remix"
+import { LoaderFunction, MetaFunction, useLoaderData, Link, ErrorBoundaryComponent } from "remix"
 import type { Post } from '.contentlayer/types'
 import { SITE } from '~/config'
 import { getPosts } from '~/lib/contentlayer.server'
@@ -112,4 +112,15 @@ export default function BlogLayoutRoute() {
             <PostPreviewList posts={posts} />
         </div>
     )
+}
+
+export let ErrorBoundary: ErrorBoundaryComponent = ({ error }) => {
+    return (
+      <div>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+        <p>The stack trace is:</p>
+        <pre>{error.stack}</pre>
+      </div>
+    );
 }

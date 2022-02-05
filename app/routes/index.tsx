@@ -1,10 +1,9 @@
-import { MetaFunction, LoaderFunction, useLoaderData } from 'remix'
+import { MetaFunction, LoaderFunction, useLoaderData, json } from 'remix'
 import type { Post } from '.contentlayer/types'
 import { SITE, FEATURED_POSTS } from '~/config'
 import { getPosts } from '~/lib/contentlayer.server'
 import HelloWorld from '~/components/HelloWorld'
 import PostPreviewList from '~/components/PostPreviewList'
-
 
 type LoaderData = {
     posts: Array<Post>,
@@ -17,13 +16,25 @@ export let meta: MetaFunction = () => {
     }
 }
 
-export let loader: LoaderFunction = async (): Promise<LoaderData> => {
+export let loader: LoaderFunction = async (): Promise<Response> => {
     const posts = await getPosts()
     const sortedPosts = posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-    return {
+    const response = {
         posts: sortedPosts,
         featured: posts.filter(post => FEATURED_POSTS.includes(post.slug))
     }
+    // return json(response, {
+        //     status: 418,
+        //     headers: {
+        //         "Cache-Control": "no-store"
+        //     }
+        // })
+    // or,
+    return new Response(JSON.stringify(response), {
+        headers: {
+            "Content-Type": "application/json; charset=utf-8"
+        }
+    })
 }
 
 export default function Index() {
