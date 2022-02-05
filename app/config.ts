@@ -22,3 +22,5 @@ export const NAV_ITEMS = {
         title: 'about'
     }
 }
+
+export const FEATURED_POSTS = ['introducing-remix']
