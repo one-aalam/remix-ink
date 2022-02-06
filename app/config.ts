@@ -24,3 +24,8 @@ export const NAV_ITEMS = {
 }
 
 export const FEATURED_POSTS = ['introducing-remix']
+
+export const PRIMARY_AUTHOR = {
+    author: 'Aftab Alam',
+    authorTwitter: '@aftabbuddy'
+}
