@@ -19,7 +19,7 @@
 .form-control > select {
     @apply py-2
 }
-.form-control > input.has-error {
+.form-control > input.has-error, textarea.has-error {
     @apply border-red-700
 }
 .form-control > .error {

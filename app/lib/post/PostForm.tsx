@@ -1,11 +1,14 @@
 import { PropsWithChildren, ReactElement } from "react";
+import { PostFieldErrors } from './config'
 
 type PostFormProps = {
     actionLbl?: string,
+    errors?: PostFieldErrors
 }
 
 export default function ProductCollectionForm({
     actionLbl = 'Submit',
+    errors,
     children
 }: PropsWithChildren<PostFormProps>): ReactElement {
 
@@ -15,24 +18,28 @@ export default function ProductCollectionForm({
                 <div className="w-2/3">
                     <div className="form-control">
                         <label htmlFor="title">Title</label>
-                        <input type="text" id="title" name="title" />
+                        <input className={`${errors?.title ? 'has-error' : ''}`} type="text" id="title" name="title" />
+                        {errors?.title && errors.title.map(error => <div className="error">{error}</div>)}
                     </div>
                     <div className="form-control">
                         <label htmlFor="description">Description</label>
-                        <textarea id="description" name="description" rows={2} />
+                        <textarea className={`${errors?.description ? 'has-error' : ''}`} id="description" name="description" rows={2} />
+                        {errors?.description && errors.description.map(error => <div className="error">{error}</div>)}
                     </div>
                     <div className="form-control">
                         <label htmlFor="body">Content</label>
-                        <textarea id="body" name="body" rows={5} />
+                        <textarea className={`${errors?.body ? 'has-error' : ''}`} id="body" name="body" rows={5} />
+                        {errors?.body && errors.body.map(error => <div className="error">{error}</div>)}
                     </div>
                 </div>
                 <div className="w-1/3">
                     <div className="form-control">
                             <label htmlFor="title">Category</label>
-                            <select id="category" name="category">
+                            <select className={`${errors?.category ? 'has-error' : ''}`} id="category" name="category" placeholder="Select a category">
                                 <option value={'design'}>design</option>
                                 <option value={'development'}>development</option>
                             </select>
+                            {errors?.category && errors.category.map(error => <div className="error">{error}</div>)}
                     </div>
                     <div className="form-control">
                             <label htmlFor="title">Tags</label>

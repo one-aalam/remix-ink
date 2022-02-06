@@ -1,11 +1,15 @@
-import { ActionFunction, useOutletContext } from "remix"
+import { ActionFunction, useActionData, useOutletContext } from "remix"
 import slugify from "slugify"
-import PostForm from '~/components/PostForm'
+import type { Markdown } from "contentlayer/core"
+import PostForm from '~/lib/post/PostForm'
+import { postCreateSchema, PostFieldErrors } from '~/lib/post/config'
 import type { ContextType } from '../content'
 import { createPost, PostData } from '~/lib/contentlayer.server'
 import { PRIMARY_AUTHOR } from "~/config"
 
-export let action: ActionFunction = async ({ request }) => {
+export type ActionData = { errors?: PostFieldErrors }
+
+export let action: ActionFunction = async ({ request }): Promise<ActionData|Response> => {
     let formFieldEntries = await (await request.formData()).entries()
     let formFields: Partial<PostData> = {}
 
@@ -21,25 +25,41 @@ export let action: ActionFunction = async ({ request }) => {
         result = formFieldEntries.next()
     }
 
-    // Transform
-    if(formFields.title) {
-        formFields.slug = slugify(formFields.title)
-    }
-    if(formFields.tags) formFields.tags = []
+    // Validate
+    let parsedPost = postCreateSchema.safeParse(formFields)
+    if(!parsedPost.success) {
+        return {
+            errors: parsedPost.error.formErrors.fieldErrors,
+        }
+    } else {
+        let { data } = parsedPost
 
-    // Set defaults
-    formFields.date = new Date().toISOString()
-    formFields.author = PRIMARY_AUTHOR.author
-    formFields.authorTwitter = PRIMARY_AUTHOR.authorTwitter
+        let postData: PostData = {
+            ...data,
 
-    // Save
-    const post = await createPost(formFields as PostData)
-    return {
+            // Transform
+            tags: data.tags || [],
+            slug: slugify(data.title),
 
+            // Set defaults
+            date: new Date().toISOString(),
+            author: PRIMARY_AUTHOR.author,
+            authorTwitter: PRIMARY_AUTHOR.authorTwitter,
+
+            body: data.body as unknown as Markdown
+        }
+
+        // Save
+        let post = await createPost(postData)
+        return {
+
+        }
     }
 }
+
 export default function AdminPostAddPage() {
     const { posts, selected } = useOutletContext<ContextType>()
+    const actionData = useActionData<ActionData>()
     return (
         <div className="admin-page">
             <div className="admin-page__heading">
@@ -47,7 +67,7 @@ export default function AdminPostAddPage() {
             </div>
             <br className="spacer" />
             <div className="w-full">
-                <PostForm actionLbl={'Create Post'} />
+                <PostForm actionLbl={'Create Post'} errors={actionData?.errors} />
             </div>
             <br className="spacer"/>
         </div>
