@@ -68,6 +68,18 @@ export async function updatePostBySlug(data: PostData, fileSlug: string) {
     }
 }
 
+export async function deletePost(fileSlug: string) {
+    try {
+        let file = path.join(CONTENT_SRC_POST_DIR, `${fileSlug}.md`)
+        await fs.access(file, constants.R_OK | constants.W_OK )
+        await fs.unlink(file)
+        return true
+    } catch(e) {
+        console.error(`Couldn't find a file with slug: ${fileSlug} (in the source dir: ${CONTENT_SRC_POST_DIR})`)
+        return false
+    }
+}
+
 /**
  *
  * @param jsonPath the path to the Contentlayer generated .json file
