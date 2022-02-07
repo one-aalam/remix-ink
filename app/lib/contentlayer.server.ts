@@ -25,13 +25,20 @@ export function toPostData(post: Post): PostData {
  * @returns all the posts generated from `/content/posts/*.md/
  */
 export async function getPosts(): Promise<Array<Post>> {
-    const dir = await fs.readdir(CONTENT_POST_DIR)
+    // due to a bug, the files generated once by content layer are not removed, this will lead to deleted file names loaded as an outcome of the scan. We check the files in the source dir to identify their targets and correctly load them
+    // const dir = await fs.readdir(CONTENT_POST_DIR)
+    const dir = await fs.readdir(CONTENT_SRC_POST_DIR)
+
     return Promise.all(
       dir.map(async filename => {
-        const file = await getJsonData<Post>(path.join(CONTENT_POST_DIR, filename))
+        const file = await getJsonData<Post>(path.join(CONTENT_POST_DIR, `${filename}.json`))
         return file
       })
     );
+}
+
+export async function getPostSourceFilenames(): Promise<Array<string>> {
+    return await fs.readdir(CONTENT_SRC_POST_DIR)
 }
 
 /**
@@ -53,8 +60,21 @@ export async function createPost(data: PostData) {
     const { body, slug, ...frontMatter } = data
     const markdown = `---\n${dump(frontMatter)}---\n${body}`;
     await fs.writeFile(path.join(CONTENT_SRC_POST_DIR, `${slug}.md`), markdown);
-    spawn('npm', ['run', 'build:content'])
+    await syncContent()
     return data
+}
+
+export async function syncContent(): Promise<number|null> {
+    return new Promise((resolve, reject) => {
+        const syncContent = spawn('npm', ['run', 'build:content'])
+        syncContent.on('close', (code) => {
+            console.log(`sync closed with code: ${code}`)
+            resolve(code)
+        })
+        syncContent.on('error', (error) => {
+            reject(error)
+        })
+    })
 }
 
 export async function updatePostBySlug(data: PostData, fileSlug: string) {

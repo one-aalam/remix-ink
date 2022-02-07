@@ -1,6 +1,5 @@
-import { ActionFunction, useActionData, useOutletContext } from "remix"
+import { ActionFunction, redirect, useActionData, useOutletContext } from "remix"
 import slugify from "slugify"
-import type { Markdown } from "contentlayer/core"
 import PostForm from '~/lib/post/PostForm'
 import { postCreateSchema, PostFieldErrors, PostFieldValues } from '~/lib/post/config'
 import type { ContextType } from '../content'
@@ -8,6 +7,7 @@ import { createPost, PostData } from '~/lib/contentlayer.server'
 import { PRIMARY_AUTHOR } from "~/config"
 
 export type ActionData = { errors?: PostFieldErrors, values?: PostFieldValues }
+const castAsArray: Array<keyof PostData> = ['tags']
 
 export let action: ActionFunction = async ({ request }): Promise<ActionData|Response> => {
     let formFieldEntries = await (await request.formData()).entries()
@@ -20,7 +20,7 @@ export let action: ActionFunction = async ({ request }): Promise<ActionData|Resp
         if(formFields[fieldName]) {
             formFields[fieldName] = [ ...typeof formFields[fieldName] === 'string' ? [formFields[fieldName]] : formFields[fieldName], fieldValue ]
         } else {
-            formFields[fieldName] = fieldValue
+            formFields[fieldName] = castAsArray.includes(fieldName) && typeof fieldValue === 'string' ? [ fieldValue ] : fieldValue
         }
         result = formFieldEntries.next()
     }
@@ -47,12 +47,9 @@ export let action: ActionFunction = async ({ request }): Promise<ActionData|Resp
             author: PRIMARY_AUTHOR.author,
             authorTwitter: PRIMARY_AUTHOR.authorTwitter
         }
-
         // Save
         let post = await createPost(postData)
-        return {
-            values: data
-        }
+        return redirect('.')
     }
 }
 
