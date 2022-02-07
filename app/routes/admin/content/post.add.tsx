@@ -2,12 +2,12 @@ import { ActionFunction, useActionData, useOutletContext } from "remix"
 import slugify from "slugify"
 import type { Markdown } from "contentlayer/core"
 import PostForm from '~/lib/post/PostForm'
-import { postCreateSchema, PostFieldErrors } from '~/lib/post/config'
+import { postCreateSchema, PostFieldErrors, PostFieldValues } from '~/lib/post/config'
 import type { ContextType } from '../content'
 import { createPost, PostData } from '~/lib/contentlayer.server'
 import { PRIMARY_AUTHOR } from "~/config"
 
-export type ActionData = { errors?: PostFieldErrors }
+export type ActionData = { errors?: PostFieldErrors, values?: PostFieldValues }
 
 export let action: ActionFunction = async ({ request }): Promise<ActionData|Response> => {
     let formFieldEntries = await (await request.formData()).entries()
@@ -43,16 +43,15 @@ export let action: ActionFunction = async ({ request }): Promise<ActionData|Resp
 
             // Set defaults
             date: new Date().toISOString(),
+            updated: new Date().toISOString(),
             author: PRIMARY_AUTHOR.author,
-            authorTwitter: PRIMARY_AUTHOR.authorTwitter,
-
-            body: data.body as unknown as Markdown
+            authorTwitter: PRIMARY_AUTHOR.authorTwitter
         }
 
         // Save
         let post = await createPost(postData)
         return {
-
+            values: data
         }
     }
 }
